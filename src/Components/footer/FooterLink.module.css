@@ -1,0 +1,6 @@
+.icon_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 2em;
+  gap: 0.5em;
+}

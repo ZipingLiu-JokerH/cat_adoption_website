@@ -1,0 +1,22 @@
+footer {
+  width: 100%;
+  background-color: #9746b5;
+  color: var(--col-text-alt);
+}
+.footer_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 4em 0;
+  max-width: 1824px;
+  margin: 0 auto;
+}
+
+.links_container {
+  display: flex;
+}
+
+.links_container a {
+  display: inline-block;
+  margin-right: 2.5em;
+  margin-bottom: 1em;
+}

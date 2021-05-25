@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --col-purple-primary: #9746b5;
+  --col-purple-secondary-dark: #813b9b;
+  --col-purple-secondary-light: #b66bd1;
+  --col-yellow-primary: #fecf5b;
+  --col-yellow-secondary-dark: #ffbd1a;
+  --col-yellow-secondary-light: #ffe299;
+  --col-filled-input: #f5e8fa;
+  --col-text: #505050;
+  --col-text-alt: #ffffff;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--col-text);
+}
