@@ -1,6 +1,22 @@
 .icon_container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   font-size: 2em;
-  gap: 0.5em;
+  margin-bottom: 1rem;
+}
+
+.icon_container > * {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: var(--col-text-alt);
+}
+
+@media (min-width: 768px) {
+  .icon_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
