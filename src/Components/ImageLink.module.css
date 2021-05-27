@@ -1,11 +1,12 @@
 .imagelink_container {
   position: relative;
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 img {
@@ -23,6 +24,10 @@ img {
 }
 
 @media (min-width: 768px) {
+  .imagelink_container {
+    width: 50%;
+    margin-bottom: 0;
+  }
   .link_tag {
     padding: 0.5em;
   }

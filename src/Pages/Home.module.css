@@ -22,7 +22,17 @@ p {
 
 .imageLink_container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+  .imageLink_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 1em;
+  }
 }
