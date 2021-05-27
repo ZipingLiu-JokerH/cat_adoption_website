@@ -13,6 +13,7 @@
   --col-yellow-primary: #fecf5b;
   --col-yellow-secondary-dark: #ffbd1a;
   --col-yellow-secondary-light: #ffe299;
+  --col-yellow-secondary-light__fade: rgba(255, 226, 153, 0.8);
   --col-filled-input: #f5e8fa;
   --col-text: #505050;
   --col-text-alt: #ffffff;

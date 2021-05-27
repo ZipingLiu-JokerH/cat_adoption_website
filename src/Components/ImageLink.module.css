@@ -1,0 +1,29 @@
+.imagelink_container {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+img {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.link_tag {
+  background-color: var(--col-yellow-secondary-light__fade);
+  width: 100%;
+  padding: 0.2em;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .link_tag {
+    padding: 0.5em;
+  }
+}
