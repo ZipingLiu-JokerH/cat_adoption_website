@@ -80,7 +80,7 @@ header svg {
   top: 3em;
   right: 10%;
 }
-.navbar_logoClose svg {
+.nav_svg_container svg {
   cursor: pointer;
   color: var(--col-purple-primary);
 }

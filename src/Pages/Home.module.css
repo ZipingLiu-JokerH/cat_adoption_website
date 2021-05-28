@@ -17,7 +17,6 @@ p {
 .home_container {
   width: 80%;
   margin: 10em auto 0 auto;
-  max-width: 1200px;
 }
 
 .imageLink_container {
@@ -28,11 +27,12 @@ p {
 }
 
 @media (min-width: 768px) {
+  .home_container {
+    max-width: 1200px;
+  }
   .imageLink_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    margin-bottom: 1em;
   }
 }
