@@ -8,7 +8,7 @@ import Home from "./Pages/Home";
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <Home />
       <Footer />
     </div>

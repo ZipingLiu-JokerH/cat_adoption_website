@@ -16,7 +16,7 @@ p {
 
 .home_container {
   width: 80%;
-  margin: 0 auto;
+  margin: 10em auto 0 auto;
   max-width: 1200px;
 }
 

@@ -1,0 +1,225 @@
+/* header created a stacking context */
+header {
+  width: 100%;
+  position: fixed;
+  top: -4em;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo_container {
+  width: 10em;
+  height: 10em;
+  background-color: #fff;
+  border-radius: 50%;
+  position: relative;
+  top: 2.5em;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg_container {
+  position: relative;
+  top: 3em;
+  right: 10%;
+}
+
+header img {
+  width: 8em;
+  z-index: 200;
+  position: relative;
+  top: 1em;
+}
+
+header svg {
+  cursor: pointer;
+  color: var(--col-purple-primary);
+}
+
+.emptybox {
+  width: 2em;
+}
+
+/* we want navbar show infront of header, need to create a stacking context for navbar */
+.navbar {
+  z-index: 110;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0.5em;
+}
+.navbar.show {
+  transform: translateY(0);
+}
+.navbar.hide {
+  transform: translateY(100%);
+}
+
+.navbar_logoClose {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1.5em;
+  justify-content: space-between;
+}
+.navbar_logoClose > img {
+  width: 7em;
+}
+
+.nav_svg_container {
+  position: relative;
+  top: 3em;
+  right: 10%;
+}
+.navbar_logoClose svg {
+  cursor: pointer;
+  color: var(--col-purple-primary);
+}
+.navbar_nav {
+  list-style: none;
+  margin-left: 20%;
+  margin-bottom: 2em;
+}
+
+.navbar_nav button {
+  border: none;
+  background-color: #fff;
+  color: var(--col-purple-primary);
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.navbar .navbar_action {
+  font-size: 1.25em;
+  padding: 0.75em 2em;
+  color: var(--col-text-alt);
+  background-color: var(--col-purple-primary);
+  border: 0.15em solid var(--col-purple-primary);
+  border-radius: 1.75em;
+  margin-left: 20%;
+  cursor: pointer;
+}
+
+.dropdown {
+  list-style: none;
+  color: var(--col-purple-primary);
+  font-size: 0.75em;
+  height: 0;
+  visibility: hidden;
+  transition: visibility 0s, height 1s ease-in;
+}
+
+.dropdown > * {
+  margin-bottom: 0.75em;
+}
+
+.has_dropdown:focus-within .dropdown {
+  height: auto;
+  visibility: visible;
+}
+
+@media (min-width: 768px) {
+  .emptybox,
+  .svg_container,
+  .navbar_logoClose,
+  .nav_svg_container {
+    display: none;
+  }
+
+  header {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .navbar {
+    width: calc(100% - 8em);
+    max-width: calc(1200px - 8em);
+    transform: translate(8em, 0) !important;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 3em;
+    background-color: transparent;
+  }
+
+  .navbar_nav {
+    display: flex;
+    margin-bottom: 0;
+    margin-left: 2em;
+  }
+
+  .navbar .navbar_action {
+    font-size: 1em;
+    margin: 0;
+    color: var(--col-purple-primary);
+    background-color: #fff;
+    padding: 0.5em 1em;
+    transform: translate(-40%, -1.25em);
+  }
+
+  .has_dropdown {
+    min-width: 8.125em;
+  }
+  .has_dropdown:first-child {
+    transform: translateX(2em);
+  }
+  .has_dropdown:nth-child(2) {
+    transform: translateX(-0.5em);
+  }
+
+  .dropdown {
+    background-color: var(--col-purple-secondary-light);
+    color: var(--col-text-alt);
+    padding: 2em 1em;
+    position: relative;
+  }
+
+  .dropdown::before {
+    display: inline-block;
+    content: "";
+    border-top: 0.2rem solid var(--col-purple-secondary-dark);
+    width: 4em;
+    margin: 0 1rem;
+    position: absolute;
+    top: -0.5em;
+    left: -1.25em;
+  }
+}
+
+@media (min-width: 850px) {
+  .logo_container {
+    margin-left: 1%;
+  }
+  .navbar .navbar_action {
+    font-size: 1em;
+    margin: 0;
+    margin-right: 3%;
+    color: var(--col-purple-primary);
+    background-color: #fff;
+    padding: 0.5em 1em;
+    transform: translate(-50%, -10%);
+  }
+
+  .has_dropdown:first-child {
+    transform: translateX(-1.5em);
+  }
+  .has_dropdown:nth-child(2),
+  .has_dropdown:nth-child(3),
+  .has_dropdown:nth-child(4) {
+    transform: translateX(-4em);
+  }
+
+  .landscape_nav_container {
+    display: flex;
+    justify-content: center;
+  }
+}
