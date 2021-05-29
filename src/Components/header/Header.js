@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // assets
 import Logo from "../../assets/logo.svg";
@@ -7,7 +7,11 @@ import Logo from "../../assets/logo.svg";
 import styles from "./Header.module.css";
 
 // components
+import { Link } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+
+//hooks
+import { useHistory, useLocation } from "react-router-dom";
 
 const purplePrimary = getComputedStyle(
   document.documentElement
@@ -15,13 +19,27 @@ const purplePrimary = getComputedStyle(
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
+
+  // since our mobile nav is a overlay on top of everything
+  // we need to close it after user has choose a page to go
+  // the location object will change for every time a new page
+  // is choosen, even if it has the same url.
+  useEffect(() => {
+    setShowNav(false);
+  }, [location]);
+
   const navbarClass = `${styles.navbar} ${showNav ? styles.show : styles.hide}`;
 
   return (
     <div className={styles.landscape_nav_container}>
       <header>
         <div className={styles.emptybox}></div>
-        <div className={styles.logo_container}>
+        <div
+          className={styles.logo_container}
+          onClick={() => history.push("/")}
+        >
           <img src={Logo} alt="" />
         </div>
         <div className={styles.svg_container} onClick={() => setShowNav(true)}>
@@ -51,7 +69,9 @@ const Header = () => {
           <li className={styles.has_dropdown}>
             <button>HOW TO HELP</button>
             <ul className={styles.dropdown}>
-              <li>Donate</li>
+              <li>
+                <Link to="/donate">Donate</Link>
+              </li>
               <li>Volunteer</li>
               <li>Surrender a Cat</li>
               <li>Foster a Cat</li>
@@ -73,7 +93,12 @@ const Header = () => {
             </ul>
           </li>
         </ul>
-        <button className={styles.navbar_action}>DONATE NOW</button>
+        <button
+          className={styles.navbar_action}
+          onClick={() => history.push("/donate")}
+        >
+          DONATE NOW
+        </button>
       </nav>
     </div>
   );

@@ -14,7 +14,7 @@ import ImageLink from "../Components/ImageLink";
 
 const Home = () => {
   return (
-    <div className={styles.home_container}>
+    <div className="page_container">
       <h1>ABOUT US</h1>
       <p>
         Abbey Cat Adoptions is a registered charity dedicated to finding
