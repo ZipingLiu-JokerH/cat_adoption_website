@@ -121,9 +121,6 @@ header svg {
 .dropdown > * {
   margin-bottom: 0.75em;
 }
-.dropdown > *:last-child {
-  margin-bottom: 0;
-}
 
 .dropdown a {
   text-decoration: none;
@@ -192,6 +189,10 @@ header svg {
 
   .dropdown a {
     color: var(--col-text-alt);
+  }
+
+  .dropdown > *:last-child {
+    margin-bottom: 0;
   }
 
   .dropdown::before {
