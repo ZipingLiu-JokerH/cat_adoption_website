@@ -28,6 +28,7 @@ const Header = () => {
   // is choosen, even if it has the same url.
   useEffect(() => {
     setShowNav(false);
+    window.scrollTo(0, 0);
   }, [location]);
 
   const navbarClass = `${styles.navbar} ${showNav ? styles.show : styles.hide}`;
