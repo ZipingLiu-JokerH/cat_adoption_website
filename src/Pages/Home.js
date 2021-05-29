@@ -12,7 +12,12 @@ import styles from "./Home.module.css";
 //components
 import ImageLink from "../Components/ImageLink";
 
+// hooks
+import { useHistory } from "react-router-dom";
+
 const Home = () => {
+  const history = useHistory();
+
   return (
     <div className="page_container">
       <h1>ABOUT US</h1>
@@ -26,7 +31,11 @@ const Home = () => {
         <ImageLink image={bgAvaliableCat} name="AVALIABLE CATS" />
         <ImageLink image={bgFosterCat} name="FOSTER A CAT" />
         <ImageLink image={bgVolunteer} name="VOLUNTEER" />
-        <ImageLink image={bgDonate} name="DONATE" />
+        <ImageLink
+          image={bgDonate}
+          name="DONATE"
+          onClick={() => history.push("/donate")}
+        />
       </div>
       <h4>WHAT'S NEW</h4>
       <p>
