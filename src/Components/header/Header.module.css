@@ -121,6 +121,13 @@ header svg {
 .dropdown > * {
   margin-bottom: 0.75em;
 }
+.dropdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown a {
+  text-decoration: none;
+}
 
 .has_dropdown:focus-within .dropdown {
   height: auto;
@@ -183,6 +190,10 @@ header svg {
     position: relative;
   }
 
+  .dropdown a {
+    color: var(--col-text-alt);
+  }
+
   .dropdown::before {
     display: inline-block;
     content: "";
@@ -198,6 +209,7 @@ header svg {
 @media (min-width: 850px) {
   .logo_container {
     margin-left: 1%;
+    cursor: pointer;
   }
   .navbar .navbar_action {
     font-size: 1em;
