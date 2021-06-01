@@ -124,6 +124,7 @@ header svg {
 
 .dropdown a {
   text-decoration: none;
+  color: var(--col-purple-primary);
 }
 
 .has_dropdown:focus-within .dropdown {
