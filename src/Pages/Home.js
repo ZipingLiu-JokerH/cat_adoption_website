@@ -28,7 +28,11 @@ const Home = () => {
         suitable match between families and their new pet.
       </p>
       <div className={styles.imageLink_container}>
-        <ImageLink image={bgAvaliableCat} name="AVALIABLE CATS" />
+        <ImageLink
+          image={bgAvaliableCat}
+          name="AVALIABLE CATS"
+          onClick={() => history.push("/avaliable-cats")}
+        />
         <ImageLink image={bgFosterCat} name="FOSTER A CAT" />
         <ImageLink image={bgVolunteer} name="VOLUNTEER" />
         <ImageLink

@@ -6,12 +6,16 @@ import Footer from "./Components/footer/Footer";
 import Header from "./Components/header/Header";
 import Home from "./Pages/Home";
 import Donate from "./Pages/Donate";
+import AvaliableCats from "./Pages/AvaliableCats";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Switch>
+        <Route path="/avaliable-cats">
+          <AvaliableCats />
+        </Route>
         <Route path="/donate">
           <Donate />
         </Route>

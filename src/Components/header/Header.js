@@ -68,7 +68,9 @@ const Header = () => {
           <li className={styles.has_dropdown}>
             <button ref={dummyRef}>ADOPT</button>
             <ul className={styles.dropdown}>
-              <li>Avaliable Cats</li>
+              <li>
+                <Link to="/avaliable-cats">Avaliable Cats</Link>
+              </li>
               <li>Avaliable Kittens</li>
               <li>Adoption Info</li>
             </ul>

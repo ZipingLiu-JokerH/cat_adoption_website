@@ -1,0 +1,35 @@
+.cat_card {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.catImage_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 0.5em;
+}
+
+.catImage_container > img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.cat_info {
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.cat_info > div:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.cat_info img {
+  width: 1.75em;
+  padding-left: 0.5em;
+}
