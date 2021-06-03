@@ -1,31 +1,47 @@
 import React, { useState } from "react";
 
 // assets
-import Prince from "../assets/catsPicture/Prince.png";
-import Lucca from "../assets/catsPicture/Lucca.png";
-import Colby from "../assets/catsPicture/Colby.png";
+import catsData from "../assets/cats_data";
 
 // styles
 import styles from "./AvaliableCats.module.css";
 
 // components
 import CatCard from "../Components/CatCard";
+import FilterOptions from "../Components/FilterOptions";
 
 const AvaliableCats = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [filteredCats, setFilteredCats] = useState(catsData);
 
   const toggleFilter = () => {
     setIsFilterOpen((prevState) => !prevState);
   };
-  const filterOptions = (
-    <ul className={styles.filterOptions}>
-      <li>AVAILABLE CATS</li>
-      <li>FILTER BY</li>
-      <li>
-        <button>APPLY FILTERS</button>
-      </li>
-    </ul>
-  );
+
+  const handleApplyFilter = (filters) => {
+    // receive an array of filters with these possiable filter
+    // ["male", "female", "short_hair", "long_hair"]
+
+    // todo, this filter logic can be improved!!!!!
+    let filtered = [...catsData];
+    if (filters.includes("male")) {
+      filtered = filtered.filter((cat) => cat.gender === "male");
+    }
+    if (filters.includes("female")) {
+      filtered = filtered.filter((cat) => cat.gender === "female");
+    }
+    if (filters.includes("short_hair")) {
+      filtered = filtered.filter((cat) => cat.isShortHair);
+    }
+    if (filters.includes("long_hair")) {
+      filtered = filtered.filter((cat) => !cat.isShortHair);
+    }
+    setFilteredCats(filtered);
+  };
+
+  const handleFilterClose = () => {
+    setIsFilterOpen(false);
+  };
 
   return (
     <div className="page_container">
@@ -42,46 +58,27 @@ const AvaliableCats = () => {
             ></div>
           </div>
         </button>
-        {isFilterOpen ? filterOptions : ""}
+        {isFilterOpen ? (
+          <FilterOptions
+            onClose={handleFilterClose}
+            onApplyFilter={handleApplyFilter}
+          />
+        ) : (
+          ""
+        )}
       </div>
-      <div className={styles.desktop_filter}>{filterOptions}</div>
-
+      {/* <div className={styles.desktop_filter}>{filterOptions}</div> */}
       <div className={styles.cats_grid}>
-        <CatCard
-          catImage={Prince}
-          name="Prince"
-          gender="male"
-          dateOfBirth="August 1, 2013"
-          breed="Turkish Van Cross"
-        />
-        <CatCard
-          catImage={Lucca}
-          name="Lucca"
-          gender="female"
-          dateOfBirth="June 01, 2017"
-          breed="Domestic S Hair"
-        />
-        <CatCard
-          catImage={Colby}
-          name="Colby"
-          gender="male"
-          dateOfBirth="July 22, 2013"
-          breed="Domestic S Hair"
-        />
-        <CatCard
-          catImage={Prince}
-          name="Prince"
-          gender="male"
-          dateOfBirth="August 1, 2013"
-          breed="Turkish Van Cross"
-        />
-        <CatCard
-          catImage={Lucca}
-          name="Lucca"
-          gender="female"
-          dateOfBirth="June 01, 2017"
-          breed="Domestic S Hair"
-        />
+        {filteredCats.map((cat) => (
+          <CatCard
+            key={cat.name}
+            catImage={cat.images[0]}
+            name={cat.name}
+            gender={cat.gender}
+            dateOfBirth={cat.dateOfBirth}
+            breed={cat.breed}
+          />
+        ))}
       </div>
     </div>
   );

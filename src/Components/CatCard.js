@@ -25,7 +25,7 @@ const CatCard = ({ catImage, name, gender, dateOfBirth, breed }) => {
           )}
         </div>
         <div>
-          DOB:
+          DOB:{" "}
           {new Date(dateOfBirth).toLocaleDateString("en-US", dateFormateOption)}
         </div>
         <div>Breed: {breed}</div>
