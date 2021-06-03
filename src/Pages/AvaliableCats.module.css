@@ -84,10 +84,11 @@
 }
 
 .cats_grid {
+  width: 116.25%;
   display: grid;
-  grid-gap: 0.625rem;
-  grid-template-columns: 57.5% 57.5%;
-  transform: translateX(calc(-1 * (10vw - 10px)));
+  grid-gap: 2vw;
+  grid-template-columns: 50% 50%;
+  transform: translateX(-7.5vw);
   margin-bottom: 2em;
 }
 
