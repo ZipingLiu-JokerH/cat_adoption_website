@@ -1,6 +1,7 @@
 .filterOptions {
   position: absolute;
   top: 4rem;
+  transform: translateX(calc(10vw - 10px));
   z-index: 1;
 
   list-style: none;

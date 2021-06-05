@@ -21,7 +21,11 @@ const CatCard = ({ catImage, name, gender, dateOfBirth, breed }) => {
           {gender === "male" ? (
             <img src={maleSign} alt="male cat" />
           ) : (
-            <img src={femaleSign} alt="female cat" />
+            <img
+              src={femaleSign}
+              className={styles.female_tag}
+              alt="female cat"
+            />
           )}
         </div>
         <div>

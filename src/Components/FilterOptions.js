@@ -23,6 +23,7 @@ const FilterOptions = ({
             id="all_cats"
             name="cats_group"
             value="all_cats"
+            defaultChecked
           />
           <span>All Cats</span>
         </label>
