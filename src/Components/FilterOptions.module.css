@@ -1,7 +1,7 @@
 .filterOptions {
   position: absolute;
   top: 4rem;
-  transform: translateX(calc(10vw - 10px));
+  transform: translateX(calc(8vw));
   z-index: 1;
 
   list-style: none;
@@ -41,4 +41,37 @@
   padding: 0.25em 1em;
   border: 3px solid var(--col-purple-primary);
   border-radius: 2em;
+}
+
+@media (min-width: 768px) {
+  .filterOptions {
+    transform: translateX(4vw);
+  }
+}
+
+@media (min-width: 992px) {
+  .filterOptions {
+    transform: none;
+    position: fixed;
+    top: 10rem;
+    left: 3vw;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .filterOptions button {
+    transform: translateX(-1rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .filterOptions {
+    left: 5vw;
+  }
+}
+
+@media (min-width: 1400px) {
+  .filterOptions {
+    left: auto;
+  }
 }

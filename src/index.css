@@ -26,6 +26,7 @@ body {
 
 .page_container {
   width: 80%;
+  min-height: 60vh;
   margin: 10em auto 0 auto;
 }
 

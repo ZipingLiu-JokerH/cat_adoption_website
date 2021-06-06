@@ -67,7 +67,14 @@ const AvaliableCats = () => {
           ""
         )}
       </div>
-      {/* <div className={styles.desktop_filter}>{filterOptions}</div> */}
+      <div className={styles.desktop_filter}>
+        {
+          <FilterOptions
+            onClose={handleFilterClose}
+            onApplyFilter={handleApplyFilter}
+          />
+        }
+      </div>
       <div className={styles.cats_grid}>
         {filteredCats.map((cat) => (
           <CatCard
