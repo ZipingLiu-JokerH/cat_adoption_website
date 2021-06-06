@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
-// assets
-import catsData from "../assets/cats_data";
+// cats data via context
+import context from "../CatsContext";
 
 // styles
 import styles from "./AvaliableCats.module.css";
@@ -11,6 +11,7 @@ import CatCard from "../Components/CatCard";
 import FilterOptions from "../Components/FilterOptions";
 
 const AvaliableCats = () => {
+  const catsData = useContext(context);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filteredCats, setFilteredCats] = useState(catsData);
 

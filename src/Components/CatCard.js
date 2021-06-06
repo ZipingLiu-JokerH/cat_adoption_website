@@ -7,12 +7,20 @@ import styles from "./CatCard.module.css";
 import maleSign from "../assets/Male_tag.svg";
 import femaleSign from "../assets/Female_tag.svg";
 
+//hooks
+import { useHistory } from "react-router-dom";
+
 const dateFormateOption = { year: "numeric", month: "short", day: "numeric" };
 
 const CatCard = ({ catImage, name, gender, dateOfBirth, breed }) => {
+  let history = useHistory();
+
   return (
     <div className={styles.cat_card}>
-      <div className={styles.catImage_container}>
+      <div
+        className={styles.catImage_container}
+        onClick={() => history.push(`/single-cat/${name}`)}
+      >
         <img src={catImage} alt={name} />
       </div>
       <div className={styles.cat_info}>

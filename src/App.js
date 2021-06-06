@@ -2,17 +2,23 @@ import React from "react";
 
 //components
 import { Route, Switch } from "react-router-dom";
+import { CatsContextProvider } from "./CatsContext";
 import Footer from "./Components/footer/Footer";
 import Header from "./Components/header/Header";
 import Home from "./Pages/Home";
 import Donate from "./Pages/Donate";
 import AvaliableCats from "./Pages/AvaliableCats";
+import SingleCat from "./Pages/SingleCat";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <CatsContextProvider />
       <Switch>
+        <Route path="/single-cat/:name">
+          <SingleCat />
+        </Route>
         <Route path="/avaliable-cats">
           <AvaliableCats />
         </Route>
@@ -26,6 +32,7 @@ function App() {
           <div className="page_container">404 page</div>
         </Route>
       </Switch>
+      <CatsContextProvider />
       <Footer />
     </div>
   );
