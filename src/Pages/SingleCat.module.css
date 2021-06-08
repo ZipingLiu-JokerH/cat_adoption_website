@@ -36,9 +36,14 @@
 }
 .info_container > table {
   width: 100%;
+  border-collapse: collapse;
+}
+.info_container table td:first-child {
+  padding-left: 0.5rem;
 }
 .info_container table td:last-child {
   text-align: right;
+  padding-right: 0.5rem;
 }
 
 .primary_button,
@@ -66,6 +71,10 @@
   padding-left: 1rem;
 }
 
+.desktop_bio {
+  display: none;
+}
+
 @media (min-width: 600px) {
   .infoButton_container {
     transform: none;
@@ -75,5 +84,27 @@
     transform: none;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .infoButton_container {
+    display: none;
+  }
+  .info_container {
+    border: none;
+    width: 100%;
+  }
+  .info_container tr:nth-child(odd) {
+    background-color: var(--col-yellow-secondary-light__fade);
+  }
+  .desktop_bio {
+    display: block;
+    width: 60%;
+    margin-right: 4rem;
+  }
+  .desktop_layout {
+    display: flex;
+    max-width: 1200px;
   }
 }

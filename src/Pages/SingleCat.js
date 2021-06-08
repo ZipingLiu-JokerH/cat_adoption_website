@@ -23,6 +23,7 @@ const SingleCat = () => {
     .split("\n")
     .filter((i) => i.length !== 0)
     .map((i) => i.trim());
+
   const catBio = introParagraphs.map((paragraph, index) => (
     <p key={index}>{paragraph}</p>
   ));
@@ -96,27 +97,34 @@ const SingleCat = () => {
   return (
     <div className="page_container">
       <CatCarousel images={catData.images} catName={name} />
-      <button className={styles.primary_button}>
-        ADOPT {name.toUpperCase()}
-      </button>
-      <div className={styles.infoButton_container}>
-        <button
-          className={!showInfo ? styles.active : ""}
-          onClick={() => setShowInfo(false)}
-        >
-          BIO
-        </button>
-        <button
-          className={showInfo ? styles.active : ""}
-          onClick={() => setShowInfo(true)}
-        >
-          INFO
-        </button>
+      <div className={styles.desktop_layout}>
+        <div className={styles.desktop_bio}>{catBio}</div>
+        <div>
+          <button className={styles.primary_button}>
+            ADOPT {name.toUpperCase()}
+          </button>
+          <div className={styles.infoButton_container}>
+            <button
+              className={!showInfo ? styles.active : ""}
+              onClick={() => setShowInfo(false)}
+            >
+              BIO
+            </button>
+            <button
+              className={showInfo ? styles.active : ""}
+              onClick={() => setShowInfo(true)}
+            >
+              INFO
+            </button>
+          </div>
+          <div className={styles.info_container}>
+            {showInfo ? catInfo : catBio}
+          </div>
+          <button className={styles.secondary_button}>
+            SHARE <img src={share} alt="share" />
+          </button>
+        </div>
       </div>
-      <div className={styles.info_container}>{showInfo ? catInfo : catBio}</div>
-      <button className={styles.secondary_button}>
-        SHARE <img src={share} alt="share" />
-      </button>
     </div>
   );
 };

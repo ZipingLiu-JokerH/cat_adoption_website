@@ -3,3 +3,11 @@
   transform: translateX(-10vw);
   margin-bottom: 2rem;
 }
+
+@media (min-width: 576px) {
+  .carousel {
+    max-width: 500px;
+    transform: none;
+    margin: 0 auto 2rem auto;
+  }
+}
