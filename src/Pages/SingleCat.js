@@ -105,20 +105,23 @@ const SingleCat = () => {
           </button>
           <div className={styles.infoButton_container}>
             <button
-              className={!showInfo ? styles.active : ""}
-              onClick={() => setShowInfo(false)}
-            >
-              BIO
-            </button>
-            <button
               className={showInfo ? styles.active : ""}
               onClick={() => setShowInfo(true)}
             >
               INFO
             </button>
+            <button
+              className={!showInfo ? styles.active : ""}
+              onClick={() => setShowInfo(false)}
+            >
+              BIO
+            </button>
           </div>
           <div className={styles.info_container}>
-            {showInfo ? catInfo : catBio}
+            <div className={styles.mobile_info_bio}>
+              {showInfo ? catInfo : catBio}
+            </div>
+            <div className={styles.desktop_info}>{catInfo}</div>
           </div>
           <button className={styles.secondary_button}>
             SHARE <img src={share} alt="share" />

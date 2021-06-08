@@ -27,14 +27,14 @@
   transform: translateX(-5vw);
 }
 
-.info_container > p {
+.info_container p {
   margin-bottom: 0.5rem;
 }
-.info_container > span {
+.info_container span {
   font-weight: 600;
   font-size: 1.25rem;
 }
-.info_container > table {
+.info_container table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -71,7 +71,8 @@
   padding-left: 1rem;
 }
 
-.desktop_bio {
+.desktop_bio,
+.desktop_info {
   display: none;
 }
 
@@ -97,6 +98,12 @@
   }
   .info_container tr:nth-child(odd) {
     background-color: var(--col-yellow-secondary-light__fade);
+  }
+  .mobile_info_bio {
+    display: none;
+  }
+  .desktop_info {
+    display: block;
   }
   .desktop_bio {
     display: block;
