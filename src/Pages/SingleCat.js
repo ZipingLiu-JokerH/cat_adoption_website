@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import context from "../CatsContext";
 
@@ -18,6 +18,7 @@ const SingleCat = () => {
   const { name } = useParams();
   const [catData] = useContext(context).filter((cat) => cat.name === name);
   const [showInfo, setShowInfo] = useState(true);
+  let history = useHistory();
 
   const introParagraphs = catData.intro
     .split("\n")
@@ -100,7 +101,10 @@ const SingleCat = () => {
       <div className={styles.desktop_layout}>
         <div className={styles.desktop_bio}>{catBio}</div>
         <div>
-          <button className={styles.primary_button}>
+          <button
+            className={styles.primary_button}
+            onClick={() => history.push(`/adoption-process/${name}`)}
+          >
             ADOPT {name.toUpperCase()}
           </button>
           <div className={styles.infoButton_container}>

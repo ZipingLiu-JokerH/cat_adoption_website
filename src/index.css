@@ -17,6 +17,7 @@
   --col-filled-input: #f5e8fa;
   --col-text: #505050;
   --col-text-alt: #ffffff;
+  --col-button-disabled: #c4c4c4;
 }
 
 body {

@@ -9,6 +9,7 @@ import Home from "./Pages/Home";
 import Donate from "./Pages/Donate";
 import AvaliableCats from "./Pages/AvaliableCats";
 import SingleCat from "./Pages/SingleCat";
+import AdoptionProcess from "./Pages/AdoptionProcsss";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
       <Header />
       <CatsContextProvider />
       <Switch>
+        <Route path="/adoption-process/:name">
+          <AdoptionProcess />
+        </Route>
         <Route path="/single-cat/:name">
           <SingleCat />
         </Route>
