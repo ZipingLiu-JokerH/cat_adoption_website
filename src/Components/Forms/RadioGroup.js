@@ -10,7 +10,9 @@ const RadioGroup = ({ groupid, question, groupname, choices, style }) => {
       <div
         role="group"
         aria-labelledby={groupid}
-        className={styles.radio_group}
+        className={`${styles.radio_group} ${
+          choices.length > 2 ? styles.column_group : ""
+        }`}
       >
         {choices.map((choice) => (
           <label key={`${groupname}_${choice}`}>

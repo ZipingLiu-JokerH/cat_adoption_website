@@ -3,30 +3,40 @@ import { useParams, useHistory } from "react-router-dom";
 
 import PersonalInfoForm from "../Components/Forms/PersonalInfoForm";
 import HouseHoldInfoForm from "../Components/Forms/HouseHoldInfoForm";
+import VetInfoForm from "../Components/Forms/VetInfoForm";
+import PetOwnershipForm from "../Components/Forms/PetOwnershipForm";
 
 import {
   PERSONAL_INITIAL_VALUES,
   HOUSEHOLD_INITIAL_VALUES,
+  VET_INITIAL_VALUES,
+  PETOWNERSHIP_INITIAL_VALUES,
 } from "../Components/Forms/initialFormValues";
 
 import styles from "./AdoptionProcess.module.css";
 
-const FORM_TITLES = ["PERSONAL DETAILS", "HOUSEHOLD AND LIFESTYLE INFO"];
+const FORM_TITLES = [
+  "PERSONAL DETAILS",
+  "HOUSEHOLD AND LIFESTYLE INFO",
+  "VET INFO",
+  "PET OWNERSHIP",
+];
 
 const AdoptionProcsss = () => {
+  let history = useHistory();
+  let { name } = useParams();
   const [workingFormNumber, setWorkingFormNumber] = useState(0);
   const [formData, setFormData] = useState([
     PERSONAL_INITIAL_VALUES,
     HOUSEHOLD_INITIAL_VALUES,
+    VET_INITIAL_VALUES,
+    { ...PETOWNERSHIP_INITIAL_VALUES, catName: name },
   ]);
-  let history = useHistory();
-  let { name } = useParams();
 
   const handleBackToCatPage = () => {
     history.push(`/single-cat/${name}`);
   };
-  const goToPreviousForm = (saveData) => {
-    handleSaveForm(saveData);
+  const goToPreviousForm = () => {
     setWorkingFormNumber((prevState) => prevState - 1);
   };
   const goToNextForm = () => {
@@ -51,6 +61,19 @@ const AdoptionProcsss = () => {
       initVal={formData[1]}
       handleSaveForm={handleSaveForm}
       goPrevious={goToPreviousForm}
+      goNext={goToNextForm}
+    />,
+    <VetInfoForm
+      initVal={formData[2]}
+      handleSaveForm={handleSaveForm}
+      goPrevious={goToPreviousForm}
+      goNext={goToNextForm}
+    />,
+    <PetOwnershipForm
+      initVal={formData[3]}
+      handleSaveForm={handleSaveForm}
+      goPrevious={goToPreviousForm}
+      goNext={goToNextForm}
     />,
   ];
 
@@ -63,6 +86,15 @@ const AdoptionProcsss = () => {
         similar age for company.
       </p>
       <p>All fields are required unless marked optional.</p>
+    </>
+  );
+
+  const ending = (
+    <>
+      <h2>Thanks for applying!</h2>
+      <p>We will call you within a week if you are a match for Prince.</p>
+      <button>SHARE</button>
+      <button>Go To HOME</button>
     </>
   );
 
@@ -80,11 +112,14 @@ const AdoptionProcsss = () => {
         <li>Virtual Meet and Greet</li>
         <li>Finalization</li>
       </ol>
-      {intro}
-      <div className={styles.formContainer}>
-        <h4>{FORM_TITLES[workingFormNumber]}</h4>
-        {FORMS[workingFormNumber]}
-      </div>
+      {workingFormNumber === 0 && intro}
+      {workingFormNumber < 4 && (
+        <div className={styles.formContainer}>
+          <h4>{FORM_TITLES[workingFormNumber]}</h4>
+          {FORMS[workingFormNumber]}
+        </div>
+      )}
+      {workingFormNumber === 4 && ending}
     </div>
   );
 };

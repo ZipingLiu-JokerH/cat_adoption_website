@@ -31,8 +31,12 @@
   justify-content: space-around;
   margin-bottom: 0.5rem;
 }
-.checkbox_group {
+.column_group {
   flex-direction: column;
+}
+
+.column_group > * {
+  margin-bottom: 0.25rem;
 }
 
 .radio_group label,

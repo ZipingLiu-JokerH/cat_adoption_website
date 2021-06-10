@@ -29,7 +29,7 @@ const PersonalInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
         }, 400);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values }) => (
         <Form className={styles.myForm}>
           <label htmlFor="firstName">
             First Name
@@ -107,7 +107,13 @@ const PersonalInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
           />
 
           <div className={styles.actionButtons}>
-            <button type="button" onClick={goPrevious}>
+            <button
+              type="button"
+              onClick={() => {
+                handleSaveForm(values);
+                goPrevious();
+              }}
+            >
               BACK
             </button>
             <button type="submit" disabled={isSubmitting}>

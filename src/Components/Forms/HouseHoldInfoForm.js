@@ -5,7 +5,7 @@ import RadioGroup from "./RadioGroup";
 
 import styles from "./Form.module.css";
 
-const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious }) => {
+const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
   return (
     <Formik
       initialValues={initVal}
@@ -25,6 +25,7 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious }) => {
           alert(JSON.stringify(values, null, 2));
           handleSaveForm(values);
           setSubmitting(false);
+          goNext();
         }, 400);
       }}
     >
@@ -123,7 +124,7 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious }) => {
           <div
             role="group"
             aria-labelledby="timetoreach-checkbox-group"
-            className={styles.checkbox_group}
+            className={`${styles.checkbox_group} ${styles.column_group}`}
           >
             <label>
               <Field type="checkbox" name="bestTimeToReach" value="Morning" />
@@ -152,7 +153,13 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious }) => {
           </label>
 
           <div className={styles.actionButtons}>
-            <button type="button" onClick={() => goPrevious(values)}>
+            <button
+              type="button"
+              onClick={() => {
+                handleSaveForm(values);
+                goPrevious();
+              }}
+            >
               BACK
             </button>
             <button type="submit" disabled={isSubmitting}>
