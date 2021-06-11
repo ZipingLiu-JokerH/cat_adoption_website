@@ -13,6 +13,9 @@ import {
   PETOWNERSHIP_INITIAL_VALUES,
 } from "../Components/Forms/initialFormValues";
 
+import catPaw_color from "../assets/catPaw_color.png";
+import catPaw_grey from "../assets/catPaw_gray.png";
+
 import styles from "./AdoptionProcess.module.css";
 
 const FORM_TITLES = [
@@ -22,10 +25,18 @@ const FORM_TITLES = [
   "PET OWNERSHIP",
 ];
 
+let formProgressIndicator = [
+  catPaw_color,
+  catPaw_grey,
+  catPaw_grey,
+  catPaw_grey,
+];
+
 const AdoptionProcsss = () => {
   let history = useHistory();
   let { name } = useParams();
   const [workingFormNumber, setWorkingFormNumber] = useState(0);
+  const [indicator, setIndicator] = useState(formProgressIndicator);
   const [formData, setFormData] = useState([
     PERSONAL_INITIAL_VALUES,
     HOUSEHOLD_INITIAL_VALUES,
@@ -33,14 +44,28 @@ const AdoptionProcsss = () => {
     { ...PETOWNERSHIP_INITIAL_VALUES, catName: name },
   ]);
 
+  const updateFormIndicator = (formNumber) => {
+    if (formNumber <= 3) {
+      setIndicator((prevState) => {
+        let newState = [...prevState];
+        newState[formNumber] = catPaw_color;
+        return newState;
+      });
+    }
+  };
   const handleBackToCatPage = () => {
     history.push(`/single-cat/${name}`);
   };
   const goToPreviousForm = () => {
+    window.scrollTo(0, 0);
     setWorkingFormNumber((prevState) => prevState - 1);
   };
   const goToNextForm = () => {
-    setWorkingFormNumber((prevState) => prevState + 1);
+    window.scrollTo(0, 0);
+    setWorkingFormNumber((prevState) => {
+      updateFormIndicator(prevState + 1);
+      return prevState + 1;
+    });
   };
   const handleSaveForm = (data) => {
     setFormData((prevState) => {
@@ -92,9 +117,13 @@ const AdoptionProcsss = () => {
   const ending = (
     <>
       <h2>Thanks for applying!</h2>
-      <p>We will call you within a week if you are a match for Prince.</p>
-      <button>SHARE</button>
-      <button>Go To HOME</button>
+      <p>We will call you within a week if you are a match for {name}.</p>
+      <button
+        className={styles.backhome_button}
+        onClick={() => history.push("/")}
+      >
+        GO TO HOME
+      </button>
     </>
   );
 
@@ -112,9 +141,14 @@ const AdoptionProcsss = () => {
         <li>Virtual Meet and Greet</li>
         <li>Finalization</li>
       </ol>
+      <div className={styles.process_indicator}>
+        {indicator.map((catPaw, i) => (
+          <img src={catPaw} key={`form_${i}`} alt={`form ${i} indicator`} />
+        ))}
+      </div>
       {workingFormNumber === 0 && intro}
       {workingFormNumber < 4 && (
-        <div className={styles.formContainer}>
+        <div>
           <h4>{FORM_TITLES[workingFormNumber]}</h4>
           {FORMS[workingFormNumber]}
         </div>
