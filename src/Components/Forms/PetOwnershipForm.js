@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 
 import RadioGroup from "./RadioGroup";
 

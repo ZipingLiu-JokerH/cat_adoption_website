@@ -14,3 +14,55 @@
   background-color: #fff;
   cursor: pointer;
 }
+
+.interactive_cat {
+  display: none;
+}
+
+@media (min-width: 400px) {
+  .form_container {
+    max-width: 21rem;
+    padding: 2rem 2rem 0 2rem;
+    margin-bottom: 6rem;
+    border: 1px solid var(--col-light_grey);
+    position: relative;
+  }
+}
+
+@media (min-width: 768px) {
+  .interactive_cat {
+    display: block;
+  }
+  .interactive_cat > img {
+    position: fixed;
+  }
+
+  .interactive_face {
+    width: 150px;
+    top: 42vh;
+  }
+  .interactive_paw_up {
+    width: 40px;
+    top: 41vh;
+  }
+  .interactive_paw_down {
+    width: 40px;
+    top: 56vh;
+  }
+
+  .show .interactive_face {
+    right: 6vw;
+  }
+  .show .interactive_paw_up,
+  .show .interactive_paw_down {
+    right: 6.5vw;
+  }
+
+  .hide .interactive_face {
+    right: 3vw;
+  }
+  .hide .interactive_paw_up,
+  .hide .interactive_paw_down {
+    right: 6.2vw;
+  }
+}

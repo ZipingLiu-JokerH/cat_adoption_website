@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 
 import RadioGroup from "./RadioGroup";
 
@@ -49,7 +49,7 @@ const VetInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
             <Field id="vetName" name="vetName" />
           </label>
 
-          <label htmlFor="vetPhone">
+          <label htmlFor="vetPhone" style={{ marginBottom: "2rem" }}>
             Vet phone number
             <Field id="vetPhone" name="vetPhone" type="tel" />
           </label>

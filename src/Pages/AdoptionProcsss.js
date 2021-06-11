@@ -15,6 +15,8 @@ import {
 
 import catPaw_color from "../assets/catPaw_color.png";
 import catPaw_grey from "../assets/catPaw_gray.png";
+import interactive_catFace from "../assets/interactive_catFace.png";
+import interactive_catPaw from "../assets/interactive_catPaw.png";
 
 import styles from "./AdoptionProcess.module.css";
 
@@ -27,6 +29,7 @@ const FORM_TITLES = [
 
 let formProgressIndicator = [
   catPaw_color,
+  catPaw_grey,
   catPaw_grey,
   catPaw_grey,
   catPaw_grey,
@@ -44,14 +47,17 @@ const AdoptionProcsss = () => {
     { ...PETOWNERSHIP_INITIAL_VALUES, catName: name },
   ]);
 
+  const [isInteractCat, setIsInteractCat] = useState(false);
+  const toggleInteract = () => {
+    setIsInteractCat((pre) => !pre);
+  };
+
   const updateFormIndicator = (formNumber) => {
-    if (formNumber <= 3) {
-      setIndicator((prevState) => {
-        let newState = [...prevState];
-        newState[formNumber] = catPaw_color;
-        return newState;
-      });
-    }
+    setIndicator((prevState) => {
+      let newState = [...prevState];
+      newState[formNumber] = catPaw_color;
+      return newState;
+    });
   };
   const handleBackToCatPage = () => {
     history.push(`/single-cat/${name}`);
@@ -105,7 +111,7 @@ const AdoptionProcsss = () => {
   const intro = (
     <>
       <h2>GET THE ADOPTION STARTED</h2>
-      <p>
+      <p style={{ maxWidth: "80%" }}>
         Please bear in mind that it is against Abbey Cat policy to adopt a
         single kitten under the age of 6 months to a home without a kitten of
         similar age for company.
@@ -146,9 +152,35 @@ const AdoptionProcsss = () => {
           <img src={catPaw} key={`form_${i}`} alt={`form ${i} indicator`} />
         ))}
       </div>
+
+      {/** this part is the interactive cat image */}
+      <div
+        className={`${styles.interactive_cat} ${
+          isInteractCat ? styles.show : styles.hide
+        }`}
+        onMouseEnter={toggleInteract}
+        onMouseLeave={toggleInteract}
+      >
+        <img
+          src={interactive_catFace}
+          alt="interactive cat face"
+          className={styles.interactive_face}
+        />
+        <img
+          src={interactive_catPaw}
+          alt="interactive cat paw"
+          className={styles.interactive_paw_up}
+        />
+        <img
+          src={interactive_catPaw}
+          alt="interactive cat paw"
+          className={styles.interactive_paw_down}
+        />
+      </div>
+
       {workingFormNumber === 0 && intro}
       {workingFormNumber < 4 && (
-        <div>
+        <div className={styles.form_container}>
           <h4>{FORM_TITLES[workingFormNumber]}</h4>
           {FORMS[workingFormNumber]}
         </div>

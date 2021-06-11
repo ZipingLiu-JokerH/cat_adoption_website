@@ -67,7 +67,15 @@
   color: var(--col-text-alt);
 }
 .myForm button[type="submit"]:disabled {
-  background-color: var(--col-button-disabled);
-  border: 2px solid var(--col-button-disabled);
+  background-color: var(--col-light_grey);
+  border: 2px solid var(--col-light_grey);
   cursor: not-allowed;
+}
+
+@media (min-width: 400px) {
+  .actionButtons {
+    position: absolute;
+    bottom: -6rem;
+    width: 100%;
+  }
 }
