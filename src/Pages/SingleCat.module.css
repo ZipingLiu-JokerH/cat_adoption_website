@@ -59,6 +59,7 @@
 .primary_button {
   color: var(--col-text-alt);
   background-color: var(--col-purple-primary);
+  cursor: pointer;
 }
 
 .secondary_button {

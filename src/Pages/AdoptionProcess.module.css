@@ -40,29 +40,32 @@
   .interactive_face {
     width: 150px;
     top: 42vh;
+    transition: right linear 300ms;
   }
   .interactive_paw_up {
     width: 40px;
-    top: 41vh;
+    top: 40vh;
+    transition: right linear 300ms;
   }
   .interactive_paw_down {
     width: 40px;
-    top: 56vh;
+    top: 59.5vh;
+    transition: right linear 300ms;
   }
 
   .show .interactive_face {
-    right: 6vw;
+    right: -24px;
   }
   .show .interactive_paw_up,
   .show .interactive_paw_down {
-    right: 6.5vw;
+    right: -10px;
   }
 
   .hide .interactive_face {
-    right: 3vw;
+    right: -62px;
   }
   .hide .interactive_paw_up,
   .hide .interactive_paw_down {
-    right: 6.2vw;
+    right: -15px;
   }
 }
