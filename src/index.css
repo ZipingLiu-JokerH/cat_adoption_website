@@ -18,6 +18,7 @@
   --col-text: #505050;
   --col-text-alt: #ffffff;
   --col-light_grey: #c4c4c4;
+  --col-error: #de0303;
 }
 
 body {

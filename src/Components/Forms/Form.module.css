@@ -50,6 +50,15 @@
   margin-left: 0.5rem;
 }
 
+.has_error {
+  border: 1px solid var(--col-error) !important;
+}
+
+.error {
+  color: var(--col-error);
+  font-size: 0.75rem;
+}
+
 .actionButtons {
   display: flex;
   justify-content: space-between;

@@ -1,26 +1,35 @@
 import React from "react";
-
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import FormikErrorFocus from "formik-error-focus";
 
 import RadioGroup from "./RadioGroup";
+import InputError from "./InputError";
 
 import styles from "./Form.module.css";
 
-const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
+const PetOwnershipForm = ({
+  initVal,
+  handleSaveForm,
+  goPrevious,
+  goNext,
+  adoptCatName,
+}) => {
   return (
     <Formik
       initialValues={initVal}
-      // validate={(values) => {
-      //   const errors = {};
-      //   if (!values.email) {
-      //     errors.email = "Required";
-      //   } else if (
-      //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      //   ) {
-      //     errors.email = "Invalid email address";
-      //   }
-      //   return errors;
-      // }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.petOwnershipHistory) {
+          errors.petOwnershipHistory = "Required";
+        }
+        if (!values.catPreparation) {
+          errors.catPreparation = "Required";
+        }
+        if (!values.trainingMethods) {
+          errors.trainingMethods = "Required";
+        }
+        return errors;
+      }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -30,11 +39,11 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
         }, 400);
       }}
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting, values, touched, errors }) => (
         <Form className={styles.myForm}>
           <label htmlFor="catName">
             Name of cat
-            <Field id="catName" name="catName" />
+            <Field id="catName" name="catName" value={adoptCatName} />
           </label>
 
           <RadioGroup
@@ -66,7 +75,13 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
               id="petOwnershipHistory"
               name="petOwnershipHistory"
               as="textarea"
+              className={
+                touched.petOwnershipHistory && errors.petOwnershipHistory
+                  ? styles.has_error
+                  : null
+              }
             />
+            <ErrorMessage name="petOwnershipHistory" component={InputError} />
           </label>
 
           <RadioGroup
@@ -77,7 +92,7 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
           />
 
           <label htmlFor="reasonToShelter">
-            If so, Why?
+            If so, Why? (optional)
             <Field id="reasonToShelter" name="reasonToShelter" as="textarea" />
           </label>
 
@@ -85,12 +100,32 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
             In a few sentences, please describe what you think your cat / kitten
             needs will be and what supplies you think you will need to purchase
             before your cat/kitten arrives at your home.
-            <Field id="catPreparation" name="catPreparation" as="textarea" />
+            <Field
+              id="catPreparation"
+              name="catPreparation"
+              as="textarea"
+              className={
+                touched.catPreparation && errors.catPreparation
+                  ? styles.has_error
+                  : null
+              }
+            />
+            <ErrorMessage name="catPreparation" component={InputError} />
           </label>
 
           <label htmlFor="trainingMethods">
             What training methods will you use for your cat/kittens?
-            <Field id="trainingMethods" name="trainingMethods" as="textarea" />
+            <Field
+              id="trainingMethods"
+              name="trainingMethods"
+              as="textarea"
+              className={
+                touched.trainingMethods && errors.trainingMethods
+                  ? styles.has_error
+                  : null
+              }
+            />
+            <ErrorMessage name="trainingMethods" component={InputError} />
           </label>
 
           <RadioGroup
@@ -101,12 +136,12 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
           />
 
           <label htmlFor="currentlyPets">
-            What pets do you currently have?
+            What pets do you currently have? (optional)
             <Field id="currentlyPets" name="currentlyPets" as="textarea" />
           </label>
 
           <label htmlFor="whereGetPets">
-            Where did you get your pets?
+            Where did you get your pets? (optional)
             <Field id="whereGetPets" name="whereGetPets" />
           </label>
 
@@ -141,7 +176,7 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
           />
 
           <label htmlFor="foodBrand" style={{ marginBottom: "2rem" }}>
-            What brands of food do you feed your cats ?
+            What brands of food do you feed your cats? (optional)
             <Field id="foodBrand" name="foodBrand" as="textarea" />
           </label>
 
@@ -159,6 +194,13 @@ const PetOwnershipForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
               NEXT
             </button>
           </div>
+          <FormikErrorFocus
+            offset={0}
+            align={"middle"}
+            focusDelay={200}
+            ease={"linear"}
+            duration={500}
+          />
         </Form>
       )}
     </Formik>

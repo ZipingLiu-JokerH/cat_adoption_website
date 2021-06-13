@@ -1,7 +1,9 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import FormikErrorFocus from "formik-error-focus";
 
 import RadioGroup from "./RadioGroup";
+import InputError from "./InputError";
 
 import styles from "./Form.module.css";
 
@@ -9,17 +11,20 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
   return (
     <Formik
       initialValues={initVal}
-      // validate={(values) => {
-      //   const errors = {};
-      //   if (!values.email) {
-      //     errors.email = "Required";
-      //   } else if (
-      //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      //   ) {
-      //     errors.email = "Invalid email address";
-      //   }
-      //   return errors;
-      // }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.householdCapacity) {
+          errors.householdCapacity = "Required";
+        }
+        if (!values.aloneTime) {
+          errors.aloneTime = "Required";
+        }
+        if (!values.activityWhileVacationing) {
+          errors.activityWhileVacationing = "Required";
+        }
+
+        return errors;
+      }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -29,11 +34,20 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
         }, 400);
       }}
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting, values, touched, errors }) => (
         <Form className={styles.myForm}>
           <label htmlFor="householdCapacity">
             How many people live in your household?
-            <Field id="householdCapacity" name="householdCapacity" />
+            <Field
+              id="householdCapacity"
+              name="householdCapacity"
+              className={
+                touched.householdCapacity && errors.householdCapacity
+                  ? styles.has_error
+                  : null
+              }
+            />
+            <ErrorMessage name="householdCapacity" component={InputError} />
           </label>
 
           <RadioGroup
@@ -44,7 +58,7 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
           />
 
           <label htmlFor="childrenAge">
-            If so, what are the ages of the children?
+            If so, what are the ages of the children? (optional)
             <Field id="childrenAge" name="childrenAge" as="textarea" />
           </label>
 
@@ -101,7 +115,14 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
 
           <label htmlFor="householdCapacity">
             How long will your cat be left alone each day?
-            <Field id="aloneTime" name="aloneTime" />
+            <Field
+              id="aloneTime"
+              name="aloneTime"
+              className={
+                touched.aloneTime && errors.aloneTime ? styles.has_error : null
+              }
+            />
+            <ErrorMessage name="aloneTime" component={InputError} />
           </label>
 
           <RadioGroup
@@ -117,6 +138,16 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
               id="activityWhileVacationing"
               name="activityWhileVacationing"
               as="textarea"
+              className={
+                touched.activityWhileVacationing &&
+                errors.activityWhileVacationing
+                  ? styles.has_error
+                  : null
+              }
+            />
+            <ErrorMessage
+              name="activityWhileVacationing"
+              component={InputError}
             />
           </label>
 
@@ -148,7 +179,7 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
           />
 
           <label htmlFor="whereKnowUs" style={{ marginBottom: "2rem" }}>
-            How did you hear about Abbey Cats?
+            How did you hear about Abbey Cats? (optional)
             <Field id="whereKnowUs" name="whereKnowUs" as="textarea" />
           </label>
 
@@ -166,6 +197,13 @@ const HouseHoldInfoForm = ({ initVal, handleSaveForm, goPrevious, goNext }) => {
               NEXT
             </button>
           </div>
+          <FormikErrorFocus
+            offset={0}
+            align={"middle"}
+            focusDelay={200}
+            ease={"linear"}
+            duration={500}
+          />
         </Form>
       )}
     </Formik>

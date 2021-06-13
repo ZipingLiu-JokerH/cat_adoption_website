@@ -38,7 +38,7 @@ let formProgressIndicator = [
 const AdoptionProcsss = () => {
   let history = useHistory();
   let { name } = useParams();
-  const [workingFormNumber, setWorkingFormNumber] = useState(4);
+  const [workingFormNumber, setWorkingFormNumber] = useState(0);
   const [indicator, setIndicator] = useState(formProgressIndicator);
   const [formData, setFormData] = useState([
     PERSONAL_INITIAL_VALUES,
@@ -168,9 +168,11 @@ const AdoptionProcsss = () => {
         onMouseEnter={toggleInteract}
         onMouseLeave={toggleInteract}
       >
-        <div className={styles.talk_bubble}>
-          <span>SEE YOU SOON!</span>
-        </div>
+        {workingFormNumber === 4 && (
+          <div className={styles.talk_bubble}>
+            <span>SEE YOU SOON!</span>
+          </div>
+        )}
 
         <img
           src={interactive_catFace}
