@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import PersonalInfoForm from "../Components/Forms/PersonalInfoForm";
 import HouseHoldInfoForm from "../Components/Forms/HouseHoldInfoForm";
 import VetInfoForm from "../Components/Forms/VetInfoForm";
 import PetOwnershipForm from "../Components/Forms/PetOwnershipForm";
+import MobileFormProgressIndicator from "../Components/Forms//MobileFormProgressIndicator";
+import DesktopFormProgressIndicator from "../Components/Forms/DesktopFormProgressIndicator";
 
 import {
   PERSONAL_INITIAL_VALUES,
@@ -13,8 +15,6 @@ import {
   PETOWNERSHIP_INITIAL_VALUES,
 } from "../Components/Forms/initialFormValues";
 
-import catPaw_color from "../assets/catPaw_color.png";
-import catPaw_grey from "../assets/catPaw_gray.png";
 import interactive_catFace from "../assets/interactive_catFace.png";
 import interactive_catPaw from "../assets/interactive_catPaw.png";
 
@@ -27,19 +27,11 @@ const FORM_TITLES = [
   "PET OWNERSHIP",
 ];
 
-let formProgressIndicator = [
-  catPaw_color,
-  catPaw_grey,
-  catPaw_grey,
-  catPaw_grey,
-  catPaw_grey,
-];
-
 const AdoptionProcsss = () => {
   let history = useHistory();
   let { name } = useParams();
   const [workingFormNumber, setWorkingFormNumber] = useState(0);
-  const [indicator, setIndicator] = useState(formProgressIndicator);
+
   const [formData, setFormData] = useState([
     PERSONAL_INITIAL_VALUES,
     HOUSEHOLD_INITIAL_VALUES,
@@ -58,13 +50,18 @@ const AdoptionProcsss = () => {
     }
   }, [workingFormNumber]);
 
-  const updateFormIndicator = (formNumber) => {
-    setIndicator((prevState) => {
-      let newState = [...prevState];
-      newState[formNumber] = catPaw_color;
-      return newState;
-    });
-  };
+  // using layout effect to determine current clientwidth
+  // to determine which form indicator to show
+  const [isDesktop, setIsDesktop] = useState(false);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setIsDesktop(document.documentElement.clientWidth >= 768);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   const handleBackToCatPage = () => {
     history.push(`/single-cat/${name}`);
   };
@@ -75,7 +72,6 @@ const AdoptionProcsss = () => {
   const goToNextForm = () => {
     window.scrollTo(0, 0);
     setWorkingFormNumber((prevState) => {
-      updateFormIndicator(prevState + 1);
       return prevState + 1;
     });
   };
@@ -154,11 +150,13 @@ const AdoptionProcsss = () => {
         <li>Virtual Meet and Greet</li>
         <li>Finalization</li>
       </ol>
-      <div className={styles.process_indicator}>
-        {indicator.map((catPaw, i) => (
-          <img src={catPaw} key={`form_${i}`} alt={`form ${i} indicator`} />
-        ))}
-      </div>
+
+      {/*Form progress Indicator */}
+      {isDesktop ? (
+        <DesktopFormProgressIndicator step={workingFormNumber} />
+      ) : (
+        <MobileFormProgressIndicator step={workingFormNumber} />
+      )}
 
       {/** this part is the interactive cat image */}
       <div
@@ -191,6 +189,7 @@ const AdoptionProcsss = () => {
         />
       </div>
 
+      {/* actual form */}
       {workingFormNumber === 0 && intro}
       {workingFormNumber < 4 && (
         <div className={styles.form_container}>

@@ -1,0 +1,31 @@
+.process_indicator {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+}
+
+.indicator_container {
+  position: relative;
+  color: var(--col-text-alt);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.indicator_container > img {
+  margin-bottom: 0.5rem;
+}
+
+.indicator_number {
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.indicator_title {
+  color: var(--col-text);
+}

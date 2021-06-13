@@ -1,0 +1,5 @@
+.process_indicator {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+}
