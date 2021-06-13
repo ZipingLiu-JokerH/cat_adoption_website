@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import PersonalInfoForm from "../Components/Forms/PersonalInfoForm";
@@ -23,7 +23,7 @@ import styles from "./AdoptionProcess.module.css";
 const FORM_TITLES = [
   "PERSONAL DETAILS",
   "HOUSEHOLD AND LIFESTYLE INFO",
-  "VET INFO",
+  "VET INFO (Optional)",
   "PET OWNERSHIP",
 ];
 
@@ -38,19 +38,25 @@ let formProgressIndicator = [
 const AdoptionProcsss = () => {
   let history = useHistory();
   let { name } = useParams();
-  const [workingFormNumber, setWorkingFormNumber] = useState(0);
+  const [workingFormNumber, setWorkingFormNumber] = useState(4);
   const [indicator, setIndicator] = useState(formProgressIndicator);
   const [formData, setFormData] = useState([
     PERSONAL_INITIAL_VALUES,
     HOUSEHOLD_INITIAL_VALUES,
     VET_INITIAL_VALUES,
-    { ...PETOWNERSHIP_INITIAL_VALUES, catName: name },
+    PETOWNERSHIP_INITIAL_VALUES,
   ]);
 
   const [isInteractCat, setIsInteractCat] = useState(false);
   const toggleInteract = () => {
     setIsInteractCat((pre) => !pre);
   };
+
+  useEffect(() => {
+    if (workingFormNumber === 4) {
+      setIsInteractCat(true);
+    }
+  }, [workingFormNumber]);
 
   const updateFormIndicator = (formNumber) => {
     setIndicator((prevState) => {
@@ -102,6 +108,7 @@ const AdoptionProcsss = () => {
     />,
     <PetOwnershipForm
       initVal={formData[3]}
+      adoptCatName={name}
       handleSaveForm={handleSaveForm}
       goPrevious={goToPreviousForm}
       goNext={goToNextForm}
@@ -161,6 +168,10 @@ const AdoptionProcsss = () => {
         onMouseEnter={toggleInteract}
         onMouseLeave={toggleInteract}
       >
+        <div className={styles.talk_bubble}>
+          <span>SEE YOU SOON!</span>
+        </div>
+
         <img
           src={interactive_catFace}
           alt="interactive cat face"

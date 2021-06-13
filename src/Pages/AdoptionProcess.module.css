@@ -44,12 +44,12 @@
   }
   .interactive_paw_up {
     width: 40px;
-    top: 40vh;
+    top: calc(42vh - 14px);
     transition: right linear 300ms;
   }
   .interactive_paw_down {
     width: 40px;
-    top: 59.5vh;
+    top: calc(42vh + 152px);
     transition: right linear 300ms;
   }
 
@@ -67,5 +67,38 @@
   .hide .interactive_paw_up,
   .hide .interactive_paw_down {
     right: -15px;
+  }
+
+  .talk_bubble {
+    background-color: var(--col-yellow-primary);
+    width: 200px;
+    height: 60px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: calc(42vh - 14px);
+    transition: right linear 300ms;
+  }
+
+  .talk_bubble:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: 38px;
+    bottom: -20px;
+    border: 12px solid;
+    border-color: var(--col-yellow-primary) var(--col-yellow-primary)
+      transparent transparent;
+  }
+
+  .show .talk_bubble {
+    right: 130px;
+  }
+  .hide .talk_bubble {
+    right: 110px;
   }
 }
