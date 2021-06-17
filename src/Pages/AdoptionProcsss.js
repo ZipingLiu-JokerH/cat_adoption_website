@@ -119,7 +119,9 @@ const AdoptionProcsss = () => {
         single kitten under the age of 6 months to a home without a kitten of
         similar age for company.
       </p>
-      <p>All fields are required unless marked optional.</p>
+      <p style={{ fontWeight: 600 }}>
+        All fields are required unless marked optional.
+      </p>
     </>
   );
 

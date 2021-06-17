@@ -1,6 +1,6 @@
 .myForm > label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .myForm input,
 .myForm textarea,
@@ -18,6 +18,10 @@
   padding: 0.5rem;
 }
 
+.myForm input[type="radio"] + span {
+  min-width: 4rem;
+}
+
 .myForm input[type="radio"],
 .myForm input[type="checkbox"] {
   display: inline;
@@ -29,7 +33,7 @@
 .checkbox_group {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .column_group {
   flex-direction: column;

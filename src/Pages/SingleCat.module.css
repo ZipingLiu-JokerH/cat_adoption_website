@@ -39,11 +39,13 @@
   border-collapse: collapse;
 }
 .info_container table td:first-child {
-  padding-left: 0.5rem;
+  min-width: 8.5rem;
+  font-size: 14px;
+  font-weight: 600;
+  vertical-align: text-top;
 }
 .info_container table td:last-child {
   text-align: right;
-  padding-right: 0.5rem;
 }
 
 .primary_button,

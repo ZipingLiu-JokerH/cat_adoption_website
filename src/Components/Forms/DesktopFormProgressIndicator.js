@@ -6,14 +6,6 @@ import catPaw_color from "../../assets/desktop_catPaw_color.png";
 import catPaw_grey from "../../assets/desktop_catPaw_gray.png";
 import catPaw_highlited from "../../assets/desktop_catPaw_highlited.png";
 
-let formProgressIndicator = [
-  catPaw_grey,
-  catPaw_grey,
-  catPaw_grey,
-  catPaw_grey,
-  catPaw_grey,
-];
-
 const indicatorTitles = [
   "PERSONAL INFO",
   "HOUSEHOLD INFO",
@@ -23,16 +15,20 @@ const indicatorTitles = [
 ];
 
 const DesktopFormProgressIndicator = ({ step }) => {
-  formProgressIndicator[step] = catPaw_color;
+  const indicator = new Array(5).fill(catPaw_grey);
+  for (let i = 0; i <= step; i++) {
+    if (i === step) {
+      indicator[i] = catPaw_highlited;
+    } else {
+      indicator[i] = catPaw_color;
+    }
+  }
 
   return (
     <div className={styles.process_indicator}>
-      {formProgressIndicator.map((catPaw, i) => (
+      {indicator.map((catPaw, i) => (
         <div className={styles.indicator_container} key={`form_${i}`}>
-          <img
-            src={i === step ? catPaw_highlited : catPaw}
-            alt={`form ${i} indicator`}
-          />
+          <img src={catPaw} alt={`form ${i} indicator`} />
           <div className={styles.indicator_number}>{i + 1}</div>
           <span className={styles.indicator_title}>{indicatorTitles[i]}</span>
         </div>

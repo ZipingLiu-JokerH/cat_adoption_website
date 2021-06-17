@@ -32,7 +32,8 @@ const PetOwnershipForm = ({
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+          // save to server stuff
+          // alert(JSON.stringify(values, null, 2));
           handleSaveForm(values);
           setSubmitting(false);
           goNext();

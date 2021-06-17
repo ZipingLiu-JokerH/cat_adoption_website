@@ -98,6 +98,7 @@ const SingleCat = () => {
   return (
     <div className="page_container">
       <CatCarousel images={catData.images} catName={name} />
+      {/* this div is only used when layout bigger screen */}
       <div className={styles.desktop_layout}>
         <div className={styles.desktop_bio}>{catBio}</div>
         <div>
