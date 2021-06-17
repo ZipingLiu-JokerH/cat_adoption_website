@@ -21,7 +21,10 @@ const Header = () => {
   const [showNav, setShowNav] = useState(false);
   const history = useHistory();
   const location = useLocation();
-  const dummyRef = useRef();
+  const adoptBtnRef = useRef();
+  const helpBtnRef = useRef();
+  const resourcestBtnRef = useRef();
+  const newsBtnRef = useRef();
 
   // since our mobile nav is a overlay on top of everything
   // we need to close it after user has choose a page to go
@@ -33,8 +36,8 @@ const Header = () => {
     // in desktop mode, we need to close the nav drop down after nav away
     // since we use focus within to hide and show dropdown, we can then
     // reset focus onto something else and remove it to reset focus
-    dummyRef.current.focus();
-    dummyRef.current.blur();
+    adoptBtnRef.current.focus();
+    adoptBtnRef.current.blur();
   }, [location]);
 
   const navbarClass = `${styles.navbar} ${showNav ? styles.show : styles.hide}`;
@@ -66,7 +69,12 @@ const Header = () => {
         </div>
         <ul className={styles.navbar_nav}>
           <li className={styles.has_dropdown}>
-            <button ref={dummyRef}>ADOPT</button>
+            <button
+              ref={adoptBtnRef}
+              onClick={() => adoptBtnRef.current.focus()}
+            >
+              ADOPT
+            </button>
             <ul className={styles.dropdown}>
               <li>
                 <Link to="/avaliable-cats">Avaliable Cats</Link>
@@ -76,7 +84,9 @@ const Header = () => {
             </ul>
           </li>
           <li className={styles.has_dropdown}>
-            <button>HOW TO HELP</button>
+            <button ref={helpBtnRef} onClick={() => helpBtnRef.current.focus()}>
+              HOW TO HELP
+            </button>
             <ul className={styles.dropdown}>
               <li>
                 <Link to="/donate">Donate</Link>
@@ -88,14 +98,21 @@ const Header = () => {
             </ul>
           </li>
           <li className={styles.has_dropdown}>
-            <button>RESOURCES</button>
+            <button
+              ref={resourcestBtnRef}
+              onClick={() => resourcestBtnRef.current.focus()}
+            >
+              RESOURCES
+            </button>
             <ul className={styles.dropdown}>
               <li>Artical and Tips</li>
               <li>Feline Nutrition</li>
             </ul>
           </li>
           <li className={styles.has_dropdown}>
-            <button>NEWS</button>
+            <button ref={newsBtnRef} onClick={() => newsBtnRef.current.focus()}>
+              NEWS
+            </button>
             <ul className={styles.dropdown}>
               <li>Rescue Stories</li>
               <li>Success Stroies</li>

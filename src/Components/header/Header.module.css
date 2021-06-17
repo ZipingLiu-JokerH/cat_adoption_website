@@ -62,7 +62,8 @@ header svg {
   transform: translateY(0);
 }
 .navbar.hide {
-  transform: translateY(100%);
+  display: none;
+  transform: translateY(-100%);
 }
 
 .navbar_logoClose {
