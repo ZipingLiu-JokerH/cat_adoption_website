@@ -33,7 +33,7 @@ const Footer = () => {
           Mississauga, ON L4Y 1A6 <br />
           <br />
           Note: this is a mailing address only – it is not a shelter. <br />
-          Our foster homes and cats / kittens are located all over GTA
+          Our foster homes and cats / kittens are located all over GTA.
         </div>
       </div>
     </footer>
