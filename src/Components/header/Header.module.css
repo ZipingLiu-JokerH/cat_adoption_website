@@ -139,6 +139,9 @@ header svg {
   .nav_svg_container {
     display: none;
   }
+  .navbar.hide {
+    display: flex;
+  }
 
   header {
     max-width: 1200px;
