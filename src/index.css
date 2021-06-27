@@ -26,6 +26,12 @@ body {
   color: var(--col-text);
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .page_container {
   width: 80%;
   min-height: 60vh;

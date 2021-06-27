@@ -2,6 +2,7 @@ footer {
   width: 100%;
   background-color: #9746b5;
   color: var(--col-text-alt);
+  margin-top: auto;
 }
 .footer_container {
   display: flex;
